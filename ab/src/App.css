@@ -6,12 +6,11 @@
 }
 
 input[type="text"] {
-  padding: 0.5em;
+  padding: 0.8em;
   border-radius: 10px;
   width: 100%;
   max-width: 200px;
 }
-
 body{
   margin: 0;
   background-color: rgb(114, 83, 199);
@@ -26,7 +25,8 @@ h1 {
 }
 
 button{
-  padding: 0.8em 1.2em;
+  margin: 10px;
+  padding: 0.8em 3.2em;
   background-color: #333333;
   color: white;
   border-radius: 5px;
@@ -39,10 +39,16 @@ button:hover{
  
 ul{
   list-style: inside;
-  padding: 5rem;
+  padding: 1rem;
   margin: 2em;
 }
 
+.tarefa.texto{
+  color: white;
+}
+.tarefa.texto:hover{
+  color: #646cff;
+}
 li{
   background-color: rgb(26, 9, 53);
   padding: 1rem;

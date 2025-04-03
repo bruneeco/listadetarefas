@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 function ListaTarefas() {
   const [tarefas, setTarefas] = useState([]);
-
+  const [ordenarAZ, setOrdenarAZ] = useState(false); // Estado para controlar a ordenação
   const [novaTarefa, setNovaTarefa] = useState("");
 
   // 🔹 Carregar tarefas salvas do LocalStorage
@@ -12,7 +12,8 @@ function ListaTarefas() {
       setTarefas(JSON.parse(tarefasSalvas)); // Agora corretamente recupera os dados
     }
   }, []);
-
+ 
+  useState
   // 🔹 Salvar as tarefas no LocalStorage sempre que houver mudanças
   useEffect(() => {
     if (tarefas.length > 0) {
@@ -29,6 +30,16 @@ function ListaTarefas() {
       setNovaTarefa(""); // Limpa o campo
     }
   };
+
+  // 🔹 Ordenar tarefas
+  const ordenarTarefas = () => {
+    const tarefasOrdenadas = [...tarefas].sort((a, b) =>
+      a.texto.localeCompare(b.texto)
+    );
+    setTarefas(tarefasOrdenadas);
+    setOrdenarAZ(!ordenarAZ); // Alterna o estado de ordenação
+  };
+
 
   // 🔹 Remover tarefa
   const removerTarefa = (indice) => {
@@ -56,6 +67,7 @@ function ListaTarefas() {
         placeholder="Digite uma nova tarefa"
       />
       <button onClick={adicionarTarefa}>Adicionar</button>
+      <button onClick={() => ordenarAZ(indice)}>Ordenar de A-Z</button>
       <ul>
         {tarefas.map((tarefa, indice) => (
           <li key={indice}>
