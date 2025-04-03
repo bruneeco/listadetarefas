@@ -1,26 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ListaTarefas() {
   const [tarefas, setTarefas] = useState([]);
-  const [novaTarefa, setNovaTarefa] = useState('');
 
+  const [novaTarefa, setNovaTarefa] = useState("");
+
+  // 🔹 Carregar tarefas salvas do LocalStorage
+  useEffect(() => {
+    const tarefasSalvas = localStorage.getItem("tarefas");
+    if (tarefasSalvas) {
+      setTarefas(JSON.parse(tarefasSalvas)); // Agora corretamente recupera os dados
+    }
+  }, []);
+
+  // 🔹 Salvar as tarefas no LocalStorage sempre que houver mudanças
+  useEffect(() => {
+    if (tarefas.length > 0) {
+      localStorage.setItem("tarefas", JSON.stringify(tarefas));
+    }
+  }, [tarefas]);
+
+  // 🔹 Adicionar nova tarefa
   const adicionarTarefa = () => {
-    if (novaTarefa.trim() !== '') {
-      setTarefas([...tarefas, { texto: novaTarefa, concluida: false }]);
-      setNovaTarefa(""); // Limpa o campo de entrada após adicionar
+    if (novaTarefa.trim() !== "") {
+      const novasTarefas = [...tarefas, { texto: novaTarefa, concluida: false }];
+      setTarefas(novasTarefas);
+      localStorage.setItem("tarefas", JSON.stringify(novasTarefas)); // Salva imediatamente no LocalStorage
+      setNovaTarefa(""); // Limpa o campo
     }
   };
 
+  // 🔹 Remover tarefa
   const removerTarefa = (indice) => {
-    setTarefas(tarefas.filter((_, i) => i !== indice)); // Remove a tarefa da lista
+    const novasTarefas = tarefas.filter((_, i) => i !== indice);
+    setTarefas(novasTarefas);
+    localStorage.setItem("tarefas", JSON.stringify(novasTarefas)); // Atualiza o LocalStorage
   };
 
+  // 🔹 Marcar/desmarcar tarefa como concluída
   const marcarTarefa = (indice) => {
-    // Atualiza o estado de concluída da tarefa específica
     const tarefasAtualizadas = tarefas.map((tarefa, i) =>
       i === indice ? { ...tarefa, concluida: !tarefa.concluida } : tarefa
     );
-    setTarefas(tarefasAtualizadas); // Atualiza a lista de tarefas
+    setTarefas(tarefasAtualizadas);
+    localStorage.setItem("tarefas", JSON.stringify(tarefasAtualizadas)); // Atualiza o LocalStorage
   };
 
   return (
@@ -29,7 +52,7 @@ function ListaTarefas() {
       <input
         type="text"
         value={novaTarefa}
-        onChange={(e) => setNovaTarefa(e.target.value)} // Atualiza o valor de novaTarefa
+        onChange={(e) => setNovaTarefa(e.target.value)}
         placeholder="Digite uma nova tarefa"
       />
       <button onClick={adicionarTarefa}>Adicionar</button>
@@ -38,8 +61,8 @@ function ListaTarefas() {
           <li key={indice}>
             <input
               type="checkbox"
-              checked={tarefa.concluida} // Marca a checkbox se a tarefa estiver concluida
-              onChange={() => marcarTarefa(indice)} // Alterna a concluso da tarefa
+              checked={tarefa.concluida}
+              onChange={() => marcarTarefa(indice)}
             />
               {tarefa.texto}
             <button onClick={() => removerTarefa(indice)}>Remover</button>
