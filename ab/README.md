@@ -1,12 +1,21 @@
-# React + Vite
+Para baixar o projeto é bem simples
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Abra o git bash ou terminal
 
-Currently, two official plugins are available:
+Clone o repositório com o comando:
+git clone https://github.com/bruneeco/listadetarefas.git
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+acesse sua pasta do projeto:
+cd ab
+ 
+é assim voce clonou o projeto!
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Este projeto funciona como um gerenciador de tarefas, onde você pode:
+
+    Digitar uma nova tarefa.
+    Adicioná-la à lista.
+    Marcar a tarefa como concluída ou não concluída.
+    Remover tarefas da lista quando quiser.
+
+ video: [text](https://www.youtube.com/watch?v=grPpulJ3Ack)
