@@ -18,4 +18,4 @@ Este projeto funciona como um gerenciador de tarefas, onde você pode:
     Marcar a tarefa como concluída ou não concluída.
     Remover tarefas da lista quando quiser.
 
- video: [text](https://www.youtube.com/watch?v=grPpulJ3Ack)
+ [video explicando](https://www.youtube.com/watch?v=grPpulJ3Ack)
